@@ -16,7 +16,8 @@ def analyze_meeting(payload: TranscriptRequest):
         return analyze_transcript(payload.transcript)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc))
-    except Exception:
+    except Exception as exc:
+        print("Exception", exc)
         raise HTTPException(
             status_code=500,
             detail="Failed to analyze meeting transcript"
